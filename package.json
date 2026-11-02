@@ -1,0 +1,16 @@
+{
+  "name": "staffsync",
+  "version": "1.0.0",
+  "description": "StaffSync - Modern Human Resource Management Solution",
+  "scripts": {
+    "install-all": "npm install --prefix server && npm install --prefix client",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "start": "node server/server.js",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "node server/seed.js"
+  },
+  "keywords": ["hrm", "mern", "react", "express", "mongodb"],
+  "author": "Mridul-SOl",
+  "license": "ISC"
+}
