@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
@@ -26,9 +27,8 @@ app.use("/api/attendance", attendanceRoutes);
 app.use("/api/announcements", announcementRoutes);
 app.use("/api/trainings", trainingRoutes);
 
-const fs = require("fs");
+// Serve frontend in production or if dist exists
 const distPath = path.join(__dirname, "../client/dist");
-
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
   app.get("*", (req, res) => {
@@ -40,9 +40,6 @@ if (fs.existsSync(distPath)) {
   });
 }
 
-
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-

@@ -3,12 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const connectDB = async () => {
-  const uri = process.env.MONGO_URI;
-  if (!uri) {
-    console.error('⚠️ [CRITICAL] MONGO_URI is missing in Environment Variables! Please configure MONGO_URI in your Render Dashboard.');
-    return;
-  }
-
+  const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/hrm';
   try {
     await mongoose.connect(uri);
     console.log('MongoDB connected successfully');
@@ -18,5 +13,3 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
-
-
