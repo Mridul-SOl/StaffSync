@@ -26,16 +26,20 @@ app.use("/api/attendance", attendanceRoutes);
 app.use("/api/announcements", announcementRoutes);
 app.use("/api/trainings", trainingRoutes);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
+const fs = require("fs");
+const distPath = path.join(__dirname, "../client/dist");
+
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../client", "dist", "index.html"));
+    res.sendFile(path.join(distPath, "index.html"));
   });
 } else {
   app.get("/", (req, res) => {
     res.send("HRM Backend Running...");
   });
 }
+
 
 const PORT = process.env.PORT || 8000;
 
