@@ -215,3 +215,4 @@ The database seeder (`node seed.js`) automatically provisions test accounts for 
 
 ## 📄 License
 This project is developed for educational and organizational human resource management purposes.
+
